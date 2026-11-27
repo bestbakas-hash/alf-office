@@ -226,8 +226,8 @@ main {
   0%, 100% { transform: translateY(0); }
   50% { transform: translateY(-4px); }
 }
-.bubble-name { font-family: var(--font-pixel); font-size: 13px; }
-.bubble-line { font-family: var(--font-body); font-size: 16px; fill: #3a3350; }
+.bubble-name { font-family: var(--font-pixel); font-size: 13px; text-anchor: start; }
+.bubble-line { font-family: var(--font-body); font-size: 16px; text-anchor: middle; fill: #3a3350; }
 .board-title { font-family: var(--font-pixel); font-size: 15px; fill: #7a5a38; }
 .nameplate text { font-family: var(--font-pixel); font-size: 15px; fill: #4a3f63; }
 .nameplate--lead text { fill: var(--alf1-deep); }
