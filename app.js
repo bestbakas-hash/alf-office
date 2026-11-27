@@ -278,6 +278,10 @@
 
     ta.addEventListener("input", () => {
       updateCounter();
+      const hint = $("#copyHint");
+      if (hint && hint.textContent !== "복사한 뒤 채팅방에 Ctrl/⌘+V") {
+        hint.textContent = "복사한 뒤 채팅방에 Ctrl/⌘+V";
+      }
       setSaveState("저장 중…");
       clearTimeout(state.saveTimer);
       state.saveTimer = setTimeout(saveDraft, 500);

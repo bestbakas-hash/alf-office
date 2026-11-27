@@ -279,14 +279,14 @@ main {
   box-shadow: 0 0 0 2.5px var(--ink);
 }
 .avatar::before, .avatar::after {
-  content: ""; position: absolute; top: 50%; width: 5px; height: 8px; margin-top: -5px;
+  content: ""; position: absolute; top: 50%; width: 4px; height: 7px; margin-top: -6px;
   background: #2b2440; border-radius: 3px;
 }
-.avatar::before { left: 11px; }
-.avatar::after { right: 11px; }
+.avatar::before { left: 9px; }
+.avatar::after { right: 9px; }
 .avatar .smile {
-  position: absolute; bottom: 11px; left: 50%; transform: translateX(-50%);
-  width: 11px; height: 4px; border-radius: 0 0 6px 6px; background: #2b2440; opacity: .75;
+  position: absolute; bottom: 10px; left: 50%; transform: translateX(-50%);
+  width: 10px; height: 4px; border-radius: 0 0 6px 6px; background: #2b2440; opacity: .75;
 }
 .avatar--lead { border-color: var(--alf1); }
 .avatar-wrap { position: relative; }
@@ -331,7 +331,7 @@ main {
 .task-state--working { color: var(--working); }
 .task-state--idle { color: var(--idle); }
 .task-state--done { color: var(--done); }
-.bar { height: 7px; border-radius: 99px; background: #ece2d2; margin-top: 7px; overflow: hidden; }
+.bar { height: 7px; border-radius: 99px; background: #e6d9c4; margin-top: 7px; overflow: hidden; }
 .bar-fill { height: 100%; border-radius: 99px; background: var(--c); transition: width .5s ease; }
 
 .recent-list li {
@@ -396,12 +396,11 @@ main {
 .mention--all { background: #fff; }
 
 #draft {
-  width: 100%; resize: vertical; min-height: 130px;
-  font-family: var(--font-body); font-size: 14.5px; line-height: 1.7;
+  width: 100%; resize: vertical; min-height: 140px;
+  font-family: var(--font-body); font-size: 14.5px; line-height: 1.75;
   color: var(--ink); padding: 14px 16px;
   border: 3px solid var(--ink); border-radius: 12px;
   background: #fffdf8;
-  background-image: repeating-linear-gradient(180deg, transparent 0 27px, #efe6d6 27px 28px);
   box-shadow: inset 0 2px 0 rgba(47, 39, 64, .05);
 }
 #draft::placeholder { color: #a99db6; }
