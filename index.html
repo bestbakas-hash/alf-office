@@ -1,0 +1,482 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+<meta charset="utf-8" />
+<meta name="viewport" content="width=device-width, initial-scale=1" />
+<title>합동 비서실 · 알프 오피스</title>
+<meta name="description" content="알프1(대장)·알프2·알프3의 도트 오피스와 상황판, 지시 작성기." />
+<meta name="theme-color" content="#fdf6ea" />
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%23b79cff'/%3E%3Ccircle cx='16' cy='16' r='7' fill='none' stroke='%23fffdf8' stroke-width='3'/%3E%3C/svg%3E" />
+<link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
+<link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/galmuri/dist/galmuri.css" />
+<link rel="stylesheet" href="style.css" />
+</head>
+<body>
+<a class="skip" href="#composer">지시 작성기로 바로 가기</a>
+
+<header class="topbar">
+  <div class="brand">
+    <span class="brand-mark" aria-hidden="true">
+      <svg viewBox="0 0 32 32" width="30" height="30" role="presentation">
+        <rect x="1" y="1" width="30" height="30" rx="6" fill="#b79cff" stroke="#2f2740" stroke-width="2.5" />
+        <circle cx="16" cy="17" r="7" fill="none" stroke="#fffdf8" stroke-width="3.4" />
+        <rect x="12.5" y="14" width="2.4" height="3.4" rx="1" fill="#2f2740" />
+        <rect x="17.1" y="14" width="2.4" height="3.4" rx="1" fill="#2f2740" />
+      </svg>
+    </span>
+    <div class="brand-text">
+      <h1>합동 비서실</h1>
+      <p id="brandTagline">알프1(대장) · 알프2 · 알프3</p>
+    </div>
+  </div>
+  <div class="topbar-meta">
+    <span class="live-chip" title="서울 기준 현재 시각">
+      <span class="live-dot" aria-hidden="true"></span>
+      <span id="clock">--:--:--</span>
+    </span>
+    <span class="motto" id="motto">조사는 나눠서, 보고는 한 번에.</span>
+  </div>
+</header>
+
+<main>
+  <!-- ── 도트 오피스 ─────────────────────────────────────────── -->
+  <section class="panel panel--office" aria-labelledby="office-heading">
+    <div class="section-head">
+      <div>
+        <h2 id="office-heading">도트 오피스</h2>
+        <p class="section-sub">캐릭터를 누르면 아래 상황판의 해당 카드로 이동합니다.</p>
+      </div>
+      <div class="office-legend" aria-label="상태 범례">
+        <span class="legend"><i class="dot dot--working"></i>작업중</span>
+        <span class="legend"><i class="dot dot--idle"></i>대기중</span>
+      </div>
+    </div>
+
+    <div class="office-frame">
+      <svg class="office" viewBox="0 0 1200 620" role="img" aria-labelledby="officeTitle officeDesc" preserveAspectRatio="xMidYMid meet">
+        <title id="officeTitle">합동 비서실 도트 오피스</title>
+        <desc id="officeDesc">가운데 대장 자리에 알프1, 왼쪽 책상에 알프2, 오른쪽 책상에 알프3이 앉아 있습니다.</desc>
+
+        <defs>
+          <linearGradient id="sky" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#e3f6ff" />
+            <stop offset="1" stop-color="#bfe6f5" />
+          </linearGradient>
+          <radialGradient id="lampGlow" cx="0.5" cy="0.15" r="0.85">
+            <stop offset="0" stop-color="#ffeeb0" stop-opacity="0.9" />
+            <stop offset="1" stop-color="#ffeeb0" stop-opacity="0" />
+          </radialGradient>
+          <linearGradient id="screenGlow" x1="0" y1="0" x2="1" y2="1">
+            <stop offset="0" stop-color="#d8fbef" />
+            <stop offset="1" stop-color="#8fe0c9" />
+          </linearGradient>
+          <linearGradient id="wallShade" x1="0" y1="0" x2="0" y2="1">
+            <stop offset="0" stop-color="#f7e9d6" />
+            <stop offset="1" stop-color="#fdf4e6" />
+          </linearGradient>
+
+          <pattern id="wallGrid" width="40" height="40" patternUnits="userSpaceOnUse">
+            <path d="M40 0H0V40" fill="none" stroke="#eadcc7" stroke-width="1" />
+          </pattern>
+          <pattern id="planks" width="120" height="48" patternUnits="userSpaceOnUse">
+            <rect width="120" height="48" fill="#eccda7" />
+            <path d="M0 47.5H120" stroke="#dcb98d" stroke-width="1.5" />
+            <path d="M1 0V48M61 0V24M1 24V48" stroke="#e2c096" stroke-width="1.5" opacity="0.8" />
+          </pattern>
+          <pattern id="scan" width="4" height="4" patternUnits="userSpaceOnUse">
+            <rect width="4" height="2" fill="#ffffff" opacity="0.16" />
+          </pattern>
+          <pattern id="rugDots" width="26" height="26" patternUnits="userSpaceOnUse">
+            <circle cx="6" cy="6" r="2" fill="#e7cfe3" />
+            <circle cx="19" cy="19" r="2" fill="#e7cfe3" />
+          </pattern>
+        </defs>
+
+        <!-- 벽 · 바닥 -->
+        <rect width="1200" height="380" fill="url(#wallShade)" />
+        <rect width="1200" height="380" fill="url(#wallGrid)" />
+        <rect y="380" width="1200" height="240" fill="url(#planks)" />
+        <rect y="380" width="1200" height="26" fill="#7a5a38" opacity="0.10" />
+        <rect y="368" width="1200" height="14" fill="#d8b58c" />
+        <rect y="366" width="1200" height="4" fill="#f2e0c8" />
+
+        <!-- 창문 -->
+        <g class="window">
+          <rect x="80" y="62" width="322" height="184" rx="6" fill="#c69a6a" />
+          <rect x="90" y="72" width="302" height="164" fill="url(#sky)" />
+          <g fill="#ffffff" opacity="0.92">
+            <rect x="120" y="104" width="34" height="12" rx="6" />
+            <rect x="146" y="96" width="22" height="20" rx="8" />
+            <rect x="286" y="128" width="30" height="10" rx="5" />
+            <rect x="300" y="118" width="20" height="14" rx="7" />
+          </g>
+          <rect x="338" y="90" width="26" height="26" fill="#ffe08a" />
+          <rect x="236" y="72" width="8" height="164" fill="#c69a6a" />
+          <rect x="90" y="150" width="302" height="8" fill="#c69a6a" />
+          <rect x="72" y="244" width="338" height="14" rx="3" fill="#d8b58c" />
+          <rect x="72" y="244" width="338" height="5" fill="#f0dcc0" />
+        </g>
+
+        <!-- 벽시계 -->
+        <g class="wall-clock">
+          <circle cx="1092" cy="108" r="32" fill="#fffdf8" stroke="#c69a6a" stroke-width="7" />
+          <rect x="1088.5" y="86" width="7" height="24" rx="3" fill="#4a3f63" />
+          <rect x="1089" y="106" width="22" height="7" rx="3" fill="#4a3f63" />
+          <circle cx="1092" cy="108" r="4" fill="#b79cff" />
+        </g>
+
+        <!-- 벽 상황판 -->
+        <g class="wall-board">
+          <rect x="468" y="82" width="244" height="134" rx="6" fill="#b98d63" />
+          <rect x="477" y="91" width="226" height="116" rx="3" fill="#e9d6b8" />
+          <text x="590" y="116" text-anchor="middle" class="board-title">상황판</text>
+          <g>
+            <rect x="492" y="128" width="58" height="62" fill="#fffdf8" transform="rotate(-4 521 159)" />
+            <rect x="500" y="140" width="40" height="4" rx="2" fill="#b9a6d9" />
+            <rect x="500" y="150" width="34" height="4" rx="2" fill="#cbbfdd" />
+            <rect x="500" y="160" width="38" height="4" rx="2" fill="#cbbfdd" />
+            <rect x="500" y="170" width="24" height="4" rx="2" fill="#cbbfdd" />
+          </g>
+          <g>
+            <rect x="566" y="126" width="58" height="62" fill="#fffdf8" transform="rotate(3 595 157)" />
+            <rect x="574" y="138" width="42" height="4" rx="2" fill="#8fd6c4" />
+            <rect x="574" y="148" width="32" height="4" rx="2" fill="#c3ded8" />
+            <rect x="574" y="158" width="38" height="4" rx="2" fill="#c3ded8" />
+            <rect x="574" y="168" width="26" height="4" rx="2" fill="#c3ded8" />
+          </g>
+          <g>
+            <rect x="638" y="132" width="48" height="50" fill="#fffdf8" transform="rotate(-2 662 157)" />
+            <rect x="646" y="144" width="32" height="4" rx="2" fill="#ffcf85" />
+            <rect x="646" y="154" width="26" height="4" rx="2" fill="#e6d7bd" />
+            <rect x="646" y="164" width="30" height="4" rx="2" fill="#e6d7bd" />
+          </g>
+        </g>
+
+        <!-- 선반 -->
+        <g class="shelf">
+          <rect x="848" y="150" width="164" height="12" rx="3" fill="#d9a86f" />
+          <rect x="848" y="150" width="164" height="4" rx="2" fill="#eec59a" />
+          <rect x="856" y="162" width="6" height="44" fill="#c0854f" />
+          <rect x="998" y="162" width="6" height="44" fill="#c0854f" />
+          <g>
+            <rect x="862" y="112" width="12" height="38" fill="#b79cff" />
+            <rect x="876" y="104" width="10" height="46" fill="#8fd6c4" />
+            <rect x="888" y="118" width="14" height="32" fill="#ffc46b" />
+            <rect x="904" y="108" width="10" height="42" fill="#f3a3bc" />
+            <rect x="916" y="120" width="12" height="30" fill="#9fb8f0" />
+          </g>
+          <g class="shelf-plant">
+            <rect x="946" y="128" width="26" height="22" rx="3" fill="#d98c6a" />
+            <circle cx="952" cy="120" r="8" fill="#7fc08a" />
+            <circle cx="966" cy="116" r="9" fill="#8fd39a" />
+            <circle cx="960" cy="126" r="7" fill="#6cae78" />
+          </g>
+        </g>
+
+        <!-- 조명 -->
+        <g class="lamp">
+          <rect x="790" y="0" width="5" height="58" fill="#8d7f6a" />
+          <path d="M758 58h68l-12 34h-44z" fill="#e4b25f" stroke="#b98d63" stroke-width="3" stroke-linejoin="round" />
+          <ellipse class="lamp-glow" cx="792" cy="112" rx="96" ry="52" fill="url(#lampGlow)" />
+          <rect x="762" y="88" width="60" height="6" rx="3" fill="#fff2c2" />
+        </g>
+
+        <!-- 바닥 러그 -->
+        <g class="rug">
+          <rect x="300" y="486" width="600" height="118" rx="16" fill="#f7ecf5" />
+          <rect x="300" y="486" width="600" height="118" rx="16" fill="url(#rugDots)" />
+          <rect x="300" y="486" width="600" height="118" rx="16" fill="none" stroke="#e2c9de" stroke-width="6" />
+        </g>
+
+        <!-- 책상 그림자 -->
+        <ellipse cx="600" cy="546" rx="220" ry="26" fill="#7a5a38" opacity="0.13" />
+        <ellipse cx="250" cy="530" rx="150" ry="20" fill="#7a5a38" opacity="0.12" />
+        <ellipse cx="950" cy="530" rx="150" ry="20" fill="#7a5a38" opacity="0.12" />
+
+        <!-- ── 알프2 (왼쪽) ───────────────────────────────── -->
+        <g class="agent-hit" data-agent="alf2" tabindex="0" role="button" aria-label="알프2 — 상황판 카드로 이동">
+          <g class="agent agent--alf2 is-working">
+            <circle class="halo" cx="250" cy="392" r="60" fill="#7fd1c0" opacity="0.16" />
+            <circle cx="250" cy="392" r="46" fill="none" stroke="#7fd1c0" stroke-width="15" />
+            <circle cx="250" cy="392" r="46" fill="none" stroke="#ffffff" stroke-width="4" opacity="0.4" stroke-dasharray="14 24" stroke-linecap="round" />
+            <g class="eyes">
+              <rect class="eye" x="230" y="379" width="10" height="14" rx="4" fill="#2b3a37" />
+              <rect class="eye" x="260" y="379" width="10" height="14" rx="4" fill="#2b3a37" />
+            </g>
+            <rect x="239" y="405" width="22" height="5" rx="2.5" fill="#2b3a37" opacity="0.8" />
+            <rect x="210" y="400" width="14" height="7" rx="3.5" fill="#ff9db2" opacity="0.6" />
+            <rect x="276" y="400" width="14" height="7" rx="3.5" fill="#ff9db2" opacity="0.6" />
+            <rect class="hand" x="196" y="412" width="14" height="14" rx="5" fill="#7fd1c0" stroke="#1f9c85" stroke-width="3" />
+            <rect class="hand hand--r" x="290" y="412" width="14" height="14" rx="5" fill="#7fd1c0" stroke="#1f9c85" stroke-width="3" />
+          </g>
+        </g>
+
+        <!-- ── 알프1 (가운데 · 대장) ──────────────────────── -->
+        <g class="agent-hit" data-agent="alf1" tabindex="0" role="button" aria-label="알프1 대장 — 상황판 카드로 이동">
+          <g class="agent agent--alf1 is-working">
+            <circle class="halo" cx="600" cy="374" r="76" fill="#b79cff" opacity="0.18" />
+            <circle cx="600" cy="374" r="58" fill="none" stroke="#b79cff" stroke-width="18" />
+            <circle cx="600" cy="374" r="58" fill="none" stroke="#ffffff" stroke-width="5" opacity="0.42" stroke-dasharray="18 26" stroke-linecap="round" />
+            <g class="eyes">
+              <rect class="eye" x="576" y="359" width="12" height="17" rx="5" fill="#2b2440" />
+              <rect class="eye" x="612" y="359" width="12" height="17" rx="5" fill="#2b2440" />
+            </g>
+            <rect x="585" y="392" width="30" height="6" rx="3" fill="#2b2440" opacity="0.8" />
+            <rect x="544" y="386" width="16" height="8" rx="4" fill="#ff9db2" opacity="0.6" />
+            <rect x="640" y="386" width="16" height="8" rx="4" fill="#ff9db2" opacity="0.6" />
+            <g class="crown">
+              <path d="M576 302l7-16 9 11 8-14 8 14 9-11 7 16z" fill="#ffd166" stroke="#c9962c" stroke-width="2.5" stroke-linejoin="round" />
+              <rect x="576" y="300" width="48" height="10" rx="3" fill="#ffd166" stroke="#c9962c" stroke-width="2.5" />
+              <circle cx="600" cy="305" r="2.6" fill="#fff3c4" />
+            </g>
+            <rect class="hand" x="530" y="402" width="17" height="17" rx="6" fill="#b79cff" stroke="#8b6cf0" stroke-width="3" />
+            <rect class="hand hand--r" x="653" y="402" width="17" height="17" rx="6" fill="#b79cff" stroke="#8b6cf0" stroke-width="3" />
+          </g>
+        </g>
+
+        <!-- ── 알프3 (오른쪽) ─────────────────────────────── -->
+        <g class="agent-hit" data-agent="alf3" tabindex="0" role="button" aria-label="알프3 — 상황판 카드로 이동">
+          <g class="agent agent--alf3 is-idle">
+            <circle class="halo" cx="950" cy="392" r="60" fill="#ffc46b" opacity="0.16" />
+            <circle cx="950" cy="392" r="46" fill="none" stroke="#ffc46b" stroke-width="15" />
+            <circle cx="950" cy="392" r="46" fill="none" stroke="#ffffff" stroke-width="4" opacity="0.4" stroke-dasharray="14 24" stroke-linecap="round" />
+            <g class="eyes">
+              <rect class="eye" x="930" y="379" width="10" height="14" rx="4" fill="#3a2c1a" />
+              <rect class="eye" x="960" y="379" width="10" height="14" rx="4" fill="#3a2c1a" />
+            </g>
+            <rect x="939" y="405" width="22" height="5" rx="2.5" fill="#3a2c1a" opacity="0.8" />
+            <rect x="910" y="400" width="14" height="7" rx="3.5" fill="#ff9db2" opacity="0.55" />
+            <rect x="976" y="400" width="14" height="7" rx="3.5" fill="#ff9db2" opacity="0.55" />
+            <rect class="hand" x="896" y="416" width="14" height="14" rx="5" fill="#ffc46b" stroke="#c9861a" stroke-width="3" />
+            <rect class="hand hand--r" x="990" y="416" width="14" height="14" rx="5" fill="#ffc46b" stroke="#c9861a" stroke-width="3" />
+          </g>
+        </g>
+
+        <!-- ── 책상 (캐릭터 아랫부분을 가림) ───────────────── -->
+        <g class="desk desk--left">
+          <rect x="110" y="442" width="280" height="20" rx="4" fill="#d9a86f" />
+          <rect x="110" y="442" width="280" height="6" rx="3" fill="#eec59a" />
+          <rect x="118" y="462" width="264" height="56" rx="4" fill="#c0854f" />
+          <rect x="118" y="462" width="264" height="8" fill="#d9a86f" opacity="0.55" />
+          <rect x="134" y="480" width="232" height="20" rx="3" fill="#b57a46" />
+          <rect x="240" y="487" width="20" height="6" rx="3" fill="#8d5f36" />
+          <rect x="124" y="518" width="14" height="24" fill="#a9713f" />
+          <rect x="362" y="518" width="14" height="24" fill="#a9713f" />
+          <g class="nameplate">
+            <rect x="212" y="472" width="76" height="26" rx="4" fill="#fff7ea" stroke="#b98d63" stroke-width="2.5" />
+            <text x="250" y="490" text-anchor="middle">알프2</text>
+          </g>
+        </g>
+
+        <g class="desk desk--lead">
+          <rect x="400" y="432" width="400" height="22" rx="4" fill="#d9a86f" />
+          <rect x="400" y="432" width="400" height="7" rx="3" fill="#efc79c" />
+          <rect x="410" y="454" width="380" height="62" rx="4" fill="#c0854f" />
+          <rect x="410" y="454" width="380" height="9" fill="#d9a86f" opacity="0.55" />
+          <rect x="430" y="474" width="340" height="24" rx="3" fill="#b57a46" />
+          <rect x="586" y="483" width="28" height="6" rx="3" fill="#8d5f36" />
+          <rect x="416" y="516" width="16" height="28" fill="#a9713f" />
+          <rect x="768" y="516" width="16" height="28" fill="#a9713f" />
+          <g class="nameplate nameplate--lead">
+            <rect x="552" y="466" width="96" height="30" rx="4" fill="#fff7ea" stroke="#8b6cf0" stroke-width="3" />
+            <text x="600" y="487" text-anchor="middle">알프1</text>
+          </g>
+        </g>
+
+        <g class="desk desk--right">
+          <rect x="810" y="442" width="280" height="20" rx="4" fill="#d9a86f" />
+          <rect x="810" y="442" width="280" height="6" rx="3" fill="#eec59a" />
+          <rect x="818" y="462" width="264" height="56" rx="4" fill="#c0854f" />
+          <rect x="818" y="462" width="264" height="8" fill="#d9a86f" opacity="0.55" />
+          <rect x="834" y="480" width="232" height="20" rx="3" fill="#b57a46" />
+          <rect x="940" y="487" width="20" height="6" rx="3" fill="#8d5f36" />
+          <rect x="824" y="518" width="14" height="24" fill="#a9713f" />
+          <rect x="1062" y="518" width="14" height="24" fill="#a9713f" />
+          <g class="nameplate">
+            <rect x="912" y="472" width="76" height="26" rx="4" fill="#fff7ea" stroke="#b98d63" stroke-width="2.5" />
+            <text x="950" y="490" text-anchor="middle">알프3</text>
+          </g>
+        </g>
+
+        <!-- ── 책상 위 소품 ───────────────────────────────── -->
+        <!-- 왼쪽: 모니터 · 머그 · 서류 -->
+        <g class="monitor">
+          <rect x="134" y="382" width="66" height="52" rx="4" fill="#3b3350" />
+          <rect x="140" y="388" width="54" height="38" rx="2" fill="url(#screenGlow)" />
+          <rect x="140" y="388" width="54" height="38" rx="2" fill="url(#scan)" />
+          <path d="M146 400h18M146 408h26M146 416h14" stroke="#1f9c85" stroke-width="2.5" opacity="0.5" />
+          <rect x="160" y="434" width="14" height="8" fill="#2c2740" />
+          <rect x="148" y="442" width="38" height="5" rx="2" fill="#2c2740" />
+        </g>
+        <g class="mug">
+          <rect x="300" y="418" width="22" height="24" rx="3" fill="#f3fbf8" stroke="#1f9c85" stroke-width="3" />
+          <path d="M322 424h7a6 6 0 0 1 0 12h-7" fill="none" stroke="#1f9c85" stroke-width="3" />
+          <path class="steam s1" d="M306 410c-4-5 4-7 0-12" fill="none" stroke="#b9b0c9" stroke-width="2.5" stroke-linecap="round" />
+          <path class="steam s2" d="M314 410c-4-5 4-7 0-12" fill="none" stroke="#b9b0c9" stroke-width="2.5" stroke-linecap="round" />
+        </g>
+        <g class="papers">
+          <rect x="330" y="430" width="48" height="12" fill="#fffdf8" stroke="#d9cbb4" stroke-width="1.5" transform="rotate(-3 354 436)" />
+          <rect x="336" y="424" width="44" height="12" fill="#fffdf8" stroke="#d9cbb4" stroke-width="1.5" transform="rotate(2 358 430)" />
+        </g>
+
+        <!-- 가운데: 모니터 · 머그 · 화분 · 책 -->
+        <g class="monitor monitor--lead">
+          <rect x="424" y="366" width="76" height="58" rx="4" fill="#3b3350" />
+          <rect x="430" y="372" width="64" height="44" rx="2" fill="url(#screenGlow)" />
+          <rect x="430" y="372" width="64" height="44" rx="2" fill="url(#scan)" />
+          <path d="M438 384h22M438 392h34M438 400h26M438 408h14" stroke="#8b6cf0" stroke-width="2.5" opacity="0.5" />
+          <rect x="454" y="424" width="16" height="8" fill="#2c2740" />
+          <rect x="440" y="432" width="42" height="6" rx="2" fill="#2c2740" />
+        </g>
+        <g class="mug">
+          <rect x="700" y="408" width="24" height="24" rx="3" fill="#faf6ff" stroke="#8b6cf0" stroke-width="3" />
+          <path d="M724 414h7a6 6 0 0 1 0 12h-7" fill="none" stroke="#8b6cf0" stroke-width="3" />
+          <path class="steam s1" d="M706 400c-4-5 4-7 0-12" fill="none" stroke="#b9b0c9" stroke-width="2.5" stroke-linecap="round" />
+          <path class="steam s2" d="M715 400c-4-5 4-7 0-12" fill="none" stroke="#b9b0c9" stroke-width="2.5" stroke-linecap="round" />
+        </g>
+        <g class="mini-plant">
+          <rect x="744" y="414" width="26" height="20" rx="3" fill="#d98c6a" />
+          <circle cx="750" cy="408" r="8" fill="#8fd39a" />
+          <circle cx="763" cy="404" r="9" fill="#7fc08a" />
+          <circle cx="757" cy="413" r="6" fill="#6cae78" />
+        </g>
+        <g class="papers">
+          <rect x="778" y="430" width="10" height="12" fill="#fffdf8" stroke="#d9cbb4" stroke-width="1.5" />
+        </g>
+
+        <!-- 오른쪽: 머그 · 서류 · 화분 -->
+        <g class="mug">
+          <rect x="828" y="418" width="22" height="24" rx="3" fill="#fffaf0" stroke="#c9861a" stroke-width="3" />
+          <path d="M850 424h7a6 6 0 0 1 0 12h-7" fill="none" stroke="#c9861a" stroke-width="3" />
+          <path class="steam s1" d="M834 410c-4-5 4-7 0-12" fill="none" stroke="#b9b0c9" stroke-width="2.5" stroke-linecap="round" />
+          <path class="steam s2" d="M842 410c-4-5 4-7 0-12" fill="none" stroke="#b9b0c9" stroke-width="2.5" stroke-linecap="round" />
+        </g>
+        <g class="papers">
+          <rect x="856" y="430" width="46" height="12" fill="#fffdf8" stroke="#d9cbb4" stroke-width="1.5" transform="rotate(-2 879 436)" />
+          <rect x="862" y="423" width="40" height="12" fill="#fffdf8" stroke="#d9cbb4" stroke-width="1.5" transform="rotate(3 882 429)" />
+        </g>
+        <g class="mini-plant">
+          <rect x="1018" y="414" width="28" height="20" rx="3" fill="#d98c6a" />
+          <circle cx="1024" cy="406" r="9" fill="#8fd39a" />
+          <circle cx="1040" cy="402" r="10" fill="#7fc08a" />
+          <circle cx="1032" cy="412" r="7" fill="#6cae78" />
+        </g>
+
+        <!-- 바닥 화분 -->
+        <g class="big-plant">
+          <rect x="1104" y="494" width="58" height="66" rx="5" fill="#d98c6a" />
+          <rect x="1104" y="494" width="58" height="10" rx="4" fill="#e8a683" />
+          <path d="M1133 496V420" stroke="#5f9c6b" stroke-width="6" stroke-linecap="round" />
+          <ellipse cx="1114" cy="440" rx="18" ry="12" fill="#7fc08a" transform="rotate(-24 1114 440)" />
+          <ellipse cx="1152" cy="432" rx="18" ry="12" fill="#8fd39a" transform="rotate(24 1152 432)" />
+          <ellipse cx="1122" cy="410" rx="16" ry="11" fill="#6cae78" transform="rotate(-18 1122 410)" />
+          <ellipse cx="1146" cy="406" rx="15" ry="10" fill="#7fc08a" transform="rotate(20 1146 406)" />
+        </g>
+
+        <!-- ── 말풍선 ─────────────────────────────────────── -->
+        <g class="bubble" data-bubble="alf2">
+          <path d="M236 318h28l-14 20z" fill="#fffdf8" stroke="#7fd1c0" stroke-width="4" stroke-linejoin="round" />
+          <rect x="92" y="248" width="316" height="72" rx="14" fill="#fffdf8" stroke="#7fd1c0" stroke-width="4" />
+          <text class="bubble-name" x="112" y="270" fill="#1f9c85">알프2</text>
+          <text class="bubble-line" x="250" y="279" data-bubble-line="1">후보는 전부 실측하고</text>
+          <text class="bubble-line" x="250" y="304" data-bubble-line="2">가격·거리까지 비교 중이에요.</text>
+        </g>
+
+        <g class="bubble" data-bubble="alf1">
+          <path d="M586 298h28l-14 20z" fill="#fffdf8" stroke="#8b6cf0" stroke-width="4" stroke-linejoin="round" />
+          <rect x="446" y="212" width="308" height="86" rx="14" fill="#fffdf8" stroke="#8b6cf0" stroke-width="4" />
+          <text class="bubble-name" x="466" y="236" fill="#7c5cf0">알프1 · 대장</text>
+          <text class="bubble-line" x="600" y="258" data-bubble-line="1">들어온 지시는 제가 정리해서</text>
+          <text class="bubble-line" x="600" y="284" data-bubble-line="2">둘에게 나눠 보낼게요.</text>
+        </g>
+
+        <g class="bubble" data-bubble="alf3">
+          <path d="M936 318h28l-14 20z" fill="#fffdf8" stroke="#c9861a" stroke-width="4" stroke-linejoin="round" />
+          <rect x="792" y="248" width="316" height="72" rx="14" fill="#fffdf8" stroke="#c9861a" stroke-width="4" />
+          <text class="bubble-name" x="812" y="270" fill="#a86f10">알프3</text>
+          <text class="bubble-line" x="950" y="279" data-bubble-line="1">리뷰 문구와 신청 양식은</text>
+          <text class="bubble-line" x="950" y="304" data-bubble-line="2">맡겨 주세요!</text>
+        </g>
+      </svg>
+    </div>
+
+    <!-- 좁은 화면용 말풍선 목록 (SVG 글자가 작아질 때 대체) -->
+    <ul class="bubble-list" id="bubbleList" aria-label="캐릭터 상태 말풍선"></ul>
+  </section>
+
+  <!-- ── 상황판 ─────────────────────────────────────────────── -->
+  <section class="panel" id="dashboard" aria-labelledby="dash-heading">
+    <div class="section-head">
+      <div>
+        <h2 id="dash-heading">상황판</h2>
+        <p class="section-sub" id="updatedLine">data/office.json 불러오는 중…</p>
+      </div>
+      <button class="btn btn--ghost" id="refreshBtn" type="button">
+        <span class="btn-icon" aria-hidden="true">↻</span> 새로고침
+      </button>
+    </div>
+
+    <div class="summary-strip" id="summaryStrip" aria-label="상황 요약"></div>
+
+    <div class="agent-grid" id="agentGrid"></div>
+
+    <div class="activity-card">
+      <h3>최근 활동</h3>
+      <ol class="activity-list" id="activityList"></ol>
+      <p class="note" id="officeNote"></p>
+    </div>
+  </section>
+
+  <!-- ── 지시 작성기 ────────────────────────────────────────── -->
+  <section class="panel" id="composer" aria-labelledby="composer-heading">
+    <div class="section-head">
+      <div>
+        <h2 id="composer-heading">지시 작성기</h2>
+        <p class="section-sub">이름을 눌러 넣고, 문장을 다듬은 뒤 <b>원클릭 복사</b> → 알프와의 채팅방에 붙여넣으세요.</p>
+      </div>
+      <span class="save-state" id="saveState" aria-live="polite">자동 저장 대기</span>
+    </div>
+
+    <div class="composer-box">
+      <div class="mention-row" role="group" aria-label="대상 선택">
+        <button class="mention mention--alf1" type="button" data-mention="알프1">@알프1 <small>대장</small></button>
+        <button class="mention mention--alf2" type="button" data-mention="알프2">@알프2 <small>조사</small></button>
+        <button class="mention mention--alf3" type="button" data-mention="알프3">@알프3 <small>실무</small></button>
+        <button class="mention mention--all" type="button" data-mention="알프1, 알프2, 알프3">@전체</button>
+      </div>
+
+      <label class="sr-only" for="draft">지시 내용</label>
+      <textarea id="draft" rows="5" spellcheck="false"
+        placeholder="예) @알프2 후보 3곳 실제 화면에서 가격·거리 확인해서 비교 카드로 정리해줘. 구글지도 링크랑 대표 사진도 붙여줘."></textarea>
+
+      <div class="composer-tools">
+        <div class="template-row" role="group" aria-label="문장 틀">
+          <button class="chip" type="button" data-template="일정·날씨 3줄로 브리핑해줘.">일정 브리핑</button>
+          <button class="chip" type="button" data-template="후보 3곳 실제 화면에서 실측 비교해서 표로 정리해줘.">실측 비교</button>
+          <button class="chip" type="button" data-template="리뷰 문구 다듬어서 바로 쓸 수 있게 정리해줘.">리뷰 문구</button>
+          <button class="chip" type="button" data-template="한도 아끼면서 핵심만 짧게 확인해줘.">짧게 확인</button>
+        </div>
+        <div class="counter" id="counter">0자</div>
+      </div>
+
+      <div class="composer-actions">
+        <button class="btn btn--primary" id="copyBtn" type="button">
+          <span class="btn-icon" aria-hidden="true">📋</span> 원클릭 복사
+        </button>
+        <button class="btn btn--ghost" id="clearBtn" type="button">지우기</button>
+        <span class="hint" id="copyHint">복사한 뒤 채팅방에 Ctrl/⌘+V</span>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer class="site-foot">
+  <p>합동 비서실 · 알프1(대장) · 알프2 · 알프3</p>
+  <p class="foot-dim">도트 오피스 + 상황판 + 지시 작성기 / 정적 페이지 (GitHub Pages)</p>
+</footer>
+
+<div class="toast" id="toast" role="status" aria-live="polite"></div>
+
+<script src="app.js"></script>
+</body>
+</html>
